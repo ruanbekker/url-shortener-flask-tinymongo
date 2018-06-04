@@ -3,4 +3,7 @@ Flask==1.0.2
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
+tinydb==3.9.0.post1
+tinydb-serialization==1.0.4
+tinymongo==0.2.0
 Werkzeug==0.14.1
