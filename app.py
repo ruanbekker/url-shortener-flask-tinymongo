@@ -21,6 +21,10 @@ def get_url_response(tiny_url):
     get_url = db.find_one({'url_short': tiny_url})['url_original']
     return 'Your Full URL is: {}'.format(get_url)
 
+def get_url(tinyid):
+    url = db.find_one({"url_id": tinyid})['url_original']
+    return url
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -36,6 +40,11 @@ def index(fullurl):
 def get(tinyurl):
     response = get_url_response(tinyurl)
     return response
+
+@app.route('/u/<tinyid>')
+def redirect_it(tinyid):
+    full_url = get_url(tinyid)
+    return redirect(full_url)
 
 if __name__ == '__main__':
     app.run()
