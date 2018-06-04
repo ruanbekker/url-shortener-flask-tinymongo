@@ -7,6 +7,15 @@ c = TinyMongoClient('tinydb')
 db_init = c.mydb
 db = db_init.records
 
+def check_duplicates(url_id):
+    db_result = db.find_one({"url_id": url_id })
+    if db_result == None:
+        id_exists = 'no'
+    else:
+        id_exists = db_result
+
+    return id_exists
+
 def create_tiny(full_url):
     url_id = generate_id()
     check_id_existence = check_duplicates(url_id)
