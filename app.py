@@ -17,6 +17,10 @@ def create_tiny(full_url):
     else:
         return 'URL Already Exists: {0}'.format(check_id_existence['url_short'])
 
+def get_url_response(tiny_url):
+    get_url = db.find_one({'url_short': tiny_url})['url_original']
+    return 'Your Full URL is: {}'.format(get_url)
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -26,6 +30,11 @@ def index():
 @app.route('/create/<path:fullurl>')
 def index(fullurl):
     response = create_tiny(fullurl)
+    return response
+
+@app.route('/check/<path:tinyurl>')
+def get(tinyurl):
+    response = get_url_response(tinyurl)
     return response
 
 if __name__ == '__main__':
