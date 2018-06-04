@@ -7,6 +7,10 @@ c = TinyMongoClient('tinydb')
 db_init = c.mydb
 db = db_init.records
 
+def generate_id():
+    unique_id = ''.join(choice(ascii_letters) for x in range(randint(15, 15)))
+    return unique_id
+
 def check_duplicates(url_id):
     db_result = db.find_one({"url_id": url_id })
     if db_result == None:
