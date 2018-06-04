@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify, Response, redirect
 from tinymongo import TinyMongoClient
+from random import choice, randint
+from string import ascii_letters, punctuation, digits
 
 domain = 'http://localhost:5000/u/'
 
